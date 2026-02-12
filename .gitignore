@@ -1,0 +1,7 @@
+build/
+DerivedData/
+*.xcresult
+.DS_Store
+
+# Third-party tools / reference repos (not part of this repo)
+third-party/
