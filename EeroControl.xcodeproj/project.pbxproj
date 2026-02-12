@@ -1,0 +1,559 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0656AD1313015FD74A95D972 /* ClientsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F072FA98ECB134406C49C6 /* ClientsView.swift */; };
+		0ED649CBF59CBF03395B46A8 /* ActionExecutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FA1360F752A29C28D34DC1 /* ActionExecutor.swift */; };
+		147806C67EFD38B0C655E266 /* OfflineConnectivityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A133057CBFE4E0C69700C301 /* OfflineConnectivityService.swift */; };
+		176150E0D5DB20E7371D8EE3 /* OfflineStateStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCC5305606AC9A5D4B81C2C /* OfflineStateStore.swift */; };
+		281126FB9BD57F89264E167C /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A0EB33F9978917C0727494 /* AppState.swift */; };
+		2C504673C0925858650496AE /* NetworkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65357BAC535F3FB5008304BA /* NetworkView.swift */; };
+		2CDE53427E0B9481AC784A43 /* JSONValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F5311B8A52C3C51B288DA8 /* JSONValue.swift */; };
+		31D84AEEE5CC3CA220329A44 /* RootWindowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4678ECCA11267827119EFD6 /* RootWindowView.swift */; };
+		35E44AFBB97BE4D65F374BF8 /* PendingActionQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B318299934F7EB556D2D5AA4 /* PendingActionQueue.swift */; };
+		3AECD8708EF97B44F5520415 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C241D47B07EF5FC867C1CE0D /* AuthService.swift */; };
+		3E95E614AE8FE4467081A975 /* SettingsStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19239FC0ECD3FF9C522DAB4D /* SettingsStoreTests.swift */; };
+		4180D8823F87C6B50E86D9A5 /* SettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7239D0725908568329150E /* SettingsStore.swift */; };
+		6F1175B1270942C3F353DB52 /* PollingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F079290D803AEB3CD87F1A /* PollingCoordinator.swift */; };
+		78CDCDF7EBE4DC18C7F2B98E /* StatusPopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49484D861746A85A94881E /* StatusPopoverView.swift */; };
+		7955264E0F628F55E90CA618 /* ActionModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8CCA72B128A949790B4B5F /* ActionModels.swift */; };
+		8B754744B754F09401EC5AC1 /* PendingActionQueueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4793CBF323946CF7D75D4154 /* PendingActionQueueTests.swift */; };
+		92917B10DD3741EEA6EEFF6C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA6B1BD579B18D62F2735F0 /* AppDelegate.swift */; };
+		92F7680828F3431A65A2722F /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B054E3A3E467662714396A95 /* DashboardView.swift */; };
+		955C9773F04EAEBBF59CB162 /* DictionaryValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53465D6B5256086217B55A98 /* DictionaryValue.swift */; };
+		9C38094A2A4E7E314B3428C5 /* StatusBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2024C3384559F7874853CAE7 /* StatusBarController.swift */; };
+		AADB00B0980F11D90E89C157 /* EeroModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA30301FF471B0BF3126595 /* EeroModels.swift */; };
+		B210F1A948C66402CAF406A0 /* EeroControlApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1B67791B8462FACF4B6F51 /* EeroControlApp.swift */; };
+		B3F134F9529E14D1C28FB85E /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F980C94692ECAC4DE841245 /* AuthView.swift */; };
+		C5A595908A5E0D44528BDBC2 /* EeroAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A0D08F115A73E9F5FBB6C6 /* EeroAPIClient.swift */; };
+		CCC4E52D43F004B0FA7139C0 /* ProfilesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9196BDA76141A6C16219BA33 /* ProfilesView.swift */; };
+		DB030A497B70AE5936A3F713 /* OfflineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02504468A755FDA4A0689BC /* OfflineView.swift */; };
+		DD95EF435E5C917EB975728A /* ShellCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D477B26B77AD48B0F591018 /* ShellCommand.swift */; };
+		EE6690082AD65E2D96A2BA7B /* AppSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39838BDA88FD472B3CDA7DA9 /* AppSettingsView.swift */; };
+		EF4BC55D8386E9C2D651DE3A /* OfflineModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27262F333CA6BB419FE5CEDF /* OfflineModels.swift */; };
+		F945EF51CF10209E75509C06 /* KeychainCredentialStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3613589242924F609EDC4291 /* KeychainCredentialStore.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FD568F63B93B2B0692AA34EF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A7F03DE889CCC388B787A9C4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5AACEFC03AD89B1F6BFE6380;
+			remoteInfo = EeroControl;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		19239FC0ECD3FF9C522DAB4D /* SettingsStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsStoreTests.swift; sourceTree = "<group>"; };
+		1F980C94692ECAC4DE841245 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
+		2024C3384559F7874853CAE7 /* StatusBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarController.swift; sourceTree = "<group>"; };
+		27262F333CA6BB419FE5CEDF /* OfflineModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineModels.swift; sourceTree = "<group>"; };
+		3613589242924F609EDC4291 /* KeychainCredentialStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainCredentialStore.swift; sourceTree = "<group>"; };
+		39838BDA88FD472B3CDA7DA9 /* AppSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsView.swift; sourceTree = "<group>"; };
+		3FCC5305606AC9A5D4B81C2C /* OfflineStateStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineStateStore.swift; sourceTree = "<group>"; };
+		44FA1360F752A29C28D34DC1 /* ActionExecutor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionExecutor.swift; sourceTree = "<group>"; };
+		4793CBF323946CF7D75D4154 /* PendingActionQueueTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingActionQueueTests.swift; sourceTree = "<group>"; };
+		53465D6B5256086217B55A98 /* DictionaryValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryValue.swift; sourceTree = "<group>"; };
+		53F072FA98ECB134406C49C6 /* ClientsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientsView.swift; sourceTree = "<group>"; };
+		54A0EB33F9978917C0727494 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		5D43A051E71537FAF9434084 /* EeroControlTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EeroControlTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		60F079290D803AEB3CD87F1A /* PollingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollingCoordinator.swift; sourceTree = "<group>"; };
+		64A0D08F115A73E9F5FBB6C6 /* EeroAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EeroAPIClient.swift; sourceTree = "<group>"; };
+		65357BAC535F3FB5008304BA /* NetworkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkView.swift; sourceTree = "<group>"; };
+		6AA6B1BD579B18D62F2735F0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		6BA30301FF471B0BF3126595 /* EeroModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EeroModels.swift; sourceTree = "<group>"; };
+		6D1B67791B8462FACF4B6F51 /* EeroControlApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EeroControlApp.swift; sourceTree = "<group>"; };
+		8AA5C97C823478E5BFD7A1D1 /* EeroControl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EeroControl.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9196BDA76141A6C16219BA33 /* ProfilesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilesView.swift; sourceTree = "<group>"; };
+		9D477B26B77AD48B0F591018 /* ShellCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShellCommand.swift; sourceTree = "<group>"; };
+		A133057CBFE4E0C69700C301 /* OfflineConnectivityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineConnectivityService.swift; sourceTree = "<group>"; };
+		B054E3A3E467662714396A95 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
+		B318299934F7EB556D2D5AA4 /* PendingActionQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingActionQueue.swift; sourceTree = "<group>"; };
+		BA49484D861746A85A94881E /* StatusPopoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusPopoverView.swift; sourceTree = "<group>"; };
+		C241D47B07EF5FC867C1CE0D /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		CE8CCA72B128A949790B4B5F /* ActionModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionModels.swift; sourceTree = "<group>"; };
+		E5F5311B8A52C3C51B288DA8 /* JSONValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONValue.swift; sourceTree = "<group>"; };
+		EA7239D0725908568329150E /* SettingsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsStore.swift; sourceTree = "<group>"; };
+		F02504468A755FDA4A0689BC /* OfflineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineView.swift; sourceTree = "<group>"; };
+		F4678ECCA11267827119EFD6 /* RootWindowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootWindowView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		3362E4F0BE994B83DEB68105 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CE8CCA72B128A949790B4B5F /* ActionModels.swift */,
+				6BA30301FF471B0BF3126595 /* EeroModels.swift */,
+				27262F333CA6BB419FE5CEDF /* OfflineModels.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		4D5FAC41F9305AD251237FFD /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				53465D6B5256086217B55A98 /* DictionaryValue.swift */,
+				E5F5311B8A52C3C51B288DA8 /* JSONValue.swift */,
+				9D477B26B77AD48B0F591018 /* ShellCommand.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		55EB70C15092F9EBE9DA1FB9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8AA5C97C823478E5BFD7A1D1 /* EeroControl.app */,
+				5D43A051E71537FAF9434084 /* EeroControlTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5A98C68AED64C9212B8CF908 = {
+			isa = PBXGroup;
+			children = (
+				CF91F9D1035B0D2BD99B008D /* Sources */,
+				729D24A0FD8727E0FE7C8E69 /* Tests */,
+				55EB70C15092F9EBE9DA1FB9 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		5E660C25BD61A74982F0FF8C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				39838BDA88FD472B3CDA7DA9 /* AppSettingsView.swift */,
+				1F980C94692ECAC4DE841245 /* AuthView.swift */,
+				53F072FA98ECB134406C49C6 /* ClientsView.swift */,
+				B054E3A3E467662714396A95 /* DashboardView.swift */,
+				65357BAC535F3FB5008304BA /* NetworkView.swift */,
+				F02504468A755FDA4A0689BC /* OfflineView.swift */,
+				9196BDA76141A6C16219BA33 /* ProfilesView.swift */,
+				F4678ECCA11267827119EFD6 /* RootWindowView.swift */,
+				BA49484D861746A85A94881E /* StatusPopoverView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		60E8BFC54651257F03A6A85F /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				44FA1360F752A29C28D34DC1 /* ActionExecutor.swift */,
+				C241D47B07EF5FC867C1CE0D /* AuthService.swift */,
+				64A0D08F115A73E9F5FBB6C6 /* EeroAPIClient.swift */,
+				3613589242924F609EDC4291 /* KeychainCredentialStore.swift */,
+				A133057CBFE4E0C69700C301 /* OfflineConnectivityService.swift */,
+				3FCC5305606AC9A5D4B81C2C /* OfflineStateStore.swift */,
+				B318299934F7EB556D2D5AA4 /* PendingActionQueue.swift */,
+				60F079290D803AEB3CD87F1A /* PollingCoordinator.swift */,
+				EA7239D0725908568329150E /* SettingsStore.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		71E640F8CD7BF648CCFABDE4 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				6AA6B1BD579B18D62F2735F0 /* AppDelegate.swift */,
+				6D1B67791B8462FACF4B6F51 /* EeroControlApp.swift */,
+				2024C3384559F7874853CAE7 /* StatusBarController.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		729D24A0FD8727E0FE7C8E69 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				D7C22F1EA346483348AF8926 /* EeroControlTests */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		C2ED1FDBACE5FB6EE561705A /* EeroControl */ = {
+			isa = PBXGroup;
+			children = (
+				71E640F8CD7BF648CCFABDE4 /* App */,
+				3362E4F0BE994B83DEB68105 /* Models */,
+				60E8BFC54651257F03A6A85F /* Services */,
+				C4D3AA08BD8F1F5B72D23921 /* State */,
+				4D5FAC41F9305AD251237FFD /* Utilities */,
+				5E660C25BD61A74982F0FF8C /* Views */,
+			);
+			path = EeroControl;
+			sourceTree = "<group>";
+		};
+		C4D3AA08BD8F1F5B72D23921 /* State */ = {
+			isa = PBXGroup;
+			children = (
+				54A0EB33F9978917C0727494 /* AppState.swift */,
+			);
+			path = State;
+			sourceTree = "<group>";
+		};
+		CF91F9D1035B0D2BD99B008D /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				C2ED1FDBACE5FB6EE561705A /* EeroControl */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		D7C22F1EA346483348AF8926 /* EeroControlTests */ = {
+			isa = PBXGroup;
+			children = (
+				4793CBF323946CF7D75D4154 /* PendingActionQueueTests.swift */,
+				19239FC0ECD3FF9C522DAB4D /* SettingsStoreTests.swift */,
+			);
+			path = EeroControlTests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		5AACEFC03AD89B1F6BFE6380 /* EeroControl */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 843A449991CDCF16664BAE3A /* Build configuration list for PBXNativeTarget "EeroControl" */;
+			buildPhases = (
+				55F5B7EB5321FED642D61B28 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = EeroControl;
+			packageProductDependencies = (
+			);
+			productName = EeroControl;
+			productReference = 8AA5C97C823478E5BFD7A1D1 /* EeroControl.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F28C7D91F099E84E3377C2AE /* EeroControlTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0271990F09BC7A8B16C96847 /* Build configuration list for PBXNativeTarget "EeroControlTests" */;
+			buildPhases = (
+				81A6F1F88BEDFF35A9E00D1A /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D5E11E345951833A40725F58 /* PBXTargetDependency */,
+			);
+			name = EeroControlTests;
+			packageProductDependencies = (
+			);
+			productName = EeroControlTests;
+			productReference = 5D43A051E71537FAF9434084 /* EeroControlTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A7F03DE889CCC388B787A9C4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+			};
+			buildConfigurationList = A168F81F2E12E32408BFA34A /* Build configuration list for PBXProject "EeroControl" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 5A98C68AED64C9212B8CF908;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5AACEFC03AD89B1F6BFE6380 /* EeroControl */,
+				F28C7D91F099E84E3377C2AE /* EeroControlTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		55F5B7EB5321FED642D61B28 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0ED649CBF59CBF03395B46A8 /* ActionExecutor.swift in Sources */,
+				7955264E0F628F55E90CA618 /* ActionModels.swift in Sources */,
+				92917B10DD3741EEA6EEFF6C /* AppDelegate.swift in Sources */,
+				EE6690082AD65E2D96A2BA7B /* AppSettingsView.swift in Sources */,
+				281126FB9BD57F89264E167C /* AppState.swift in Sources */,
+				3AECD8708EF97B44F5520415 /* AuthService.swift in Sources */,
+				B3F134F9529E14D1C28FB85E /* AuthView.swift in Sources */,
+				0656AD1313015FD74A95D972 /* ClientsView.swift in Sources */,
+				92F7680828F3431A65A2722F /* DashboardView.swift in Sources */,
+				955C9773F04EAEBBF59CB162 /* DictionaryValue.swift in Sources */,
+				C5A595908A5E0D44528BDBC2 /* EeroAPIClient.swift in Sources */,
+				B210F1A948C66402CAF406A0 /* EeroControlApp.swift in Sources */,
+				AADB00B0980F11D90E89C157 /* EeroModels.swift in Sources */,
+				2CDE53427E0B9481AC784A43 /* JSONValue.swift in Sources */,
+				F945EF51CF10209E75509C06 /* KeychainCredentialStore.swift in Sources */,
+				2C504673C0925858650496AE /* NetworkView.swift in Sources */,
+				147806C67EFD38B0C655E266 /* OfflineConnectivityService.swift in Sources */,
+				EF4BC55D8386E9C2D651DE3A /* OfflineModels.swift in Sources */,
+				176150E0D5DB20E7371D8EE3 /* OfflineStateStore.swift in Sources */,
+				DB030A497B70AE5936A3F713 /* OfflineView.swift in Sources */,
+				35E44AFBB97BE4D65F374BF8 /* PendingActionQueue.swift in Sources */,
+				6F1175B1270942C3F353DB52 /* PollingCoordinator.swift in Sources */,
+				CCC4E52D43F004B0FA7139C0 /* ProfilesView.swift in Sources */,
+				31D84AEEE5CC3CA220329A44 /* RootWindowView.swift in Sources */,
+				4180D8823F87C6B50E86D9A5 /* SettingsStore.swift in Sources */,
+				DD95EF435E5C917EB975728A /* ShellCommand.swift in Sources */,
+				9C38094A2A4E7E314B3428C5 /* StatusBarController.swift in Sources */,
+				78CDCDF7EBE4DC18C7F2B98E /* StatusPopoverView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		81A6F1F88BEDFF35A9E00D1A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8B754744B754F09401EC5AC1 /* PendingActionQueueTests.swift in Sources */,
+				3E95E614AE8FE4467081A975 /* SettingsStoreTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D5E11E345951833A40725F58 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5AACEFC03AD89B1F6BFE6380 /* EeroControl */;
+			targetProxy = FD568F63B93B2B0692AA34EF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		06D0F47C6516D662324C080A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Release;
+		};
+		4C9340F4125AAEEB793BA073 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Debug;
+		};
+		5E665E35C193A5397E4FE030 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = me.davelindon.eerocontrol.tests;
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EeroControl.app/Contents/MacOS/EeroControl";
+			};
+			name = Debug;
+		};
+		78759D8CDB54426A2BD50D7A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = me.davelindon.eerocontrol.tests;
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EeroControl.app/Contents/MacOS/EeroControl";
+			};
+			name = Release;
+		};
+		D46B41DBC5256604BD139AA8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Resources/EeroControl.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = me.davelindon.eerocontrol;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		DE8F55592EAB0FA6D798F758 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Resources/EeroControl.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = me.davelindon.eerocontrol;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0271990F09BC7A8B16C96847 /* Build configuration list for PBXNativeTarget "EeroControlTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5E665E35C193A5397E4FE030 /* Debug */,
+				78759D8CDB54426A2BD50D7A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		843A449991CDCF16664BAE3A /* Build configuration list for PBXNativeTarget "EeroControl" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DE8F55592EAB0FA6D798F758 /* Debug */,
+				D46B41DBC5256604BD139AA8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		A168F81F2E12E32408BFA34A /* Build configuration list for PBXProject "EeroControl" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4C9340F4125AAEEB793BA073 /* Debug */,
+				06D0F47C6516D662324C080A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A7F03DE889CCC388B787A9C4 /* Project object */;
+}

@@ -1,0 +1,66 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  swift-format:
+    name: Swift Format
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Install swift-format
+        run: brew install swift-format
+
+      - name: swift-format version
+        run: swift-format --version
+
+      - name: Lint formatting
+        run: swift-format lint --recursive Sources Tests
+
+  build-test:
+    name: Build and Test
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Xcode version
+        run: xcodebuild -version
+
+      - name: Test
+        run: |
+          set -euo pipefail
+          xcodebuild \
+            -project EeroControl.xcodeproj \
+            -scheme EeroControl \
+            -configuration Debug \
+            -destination "platform=macOS" \
+            test
+
+  gitleaks:
+    name: Secret Scan (gitleaks)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout (full history)
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Run gitleaks
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
