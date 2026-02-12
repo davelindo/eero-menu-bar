@@ -128,7 +128,11 @@ struct ClientsView: View {
             .padding(.vertical, 8)
             .background(
                 RoundedRectangle(cornerRadius: 10, style: .continuous)
-                    .fill(Color.white.opacity(0.05))
+                    .fill(.thinMaterial)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10, style: .continuous)
+                            .stroke(Color.primary.opacity(0.10), lineWidth: 1)
+                    )
             )
 
             Picker("Scope", selection: $scope) {
@@ -277,7 +281,7 @@ struct ClientsView: View {
             .padding(.vertical, 8)
             .background(
                 RoundedRectangle(cornerRadius: 8, style: .continuous)
-                    .fill(selectedClientID == client.id ? Color.blue.opacity(0.2) : Color.white.opacity(0.02))
+                    .fill(selectedClientID == client.id ? Color.blue.opacity(0.2) : Color.primary.opacity(0.03))
             )
         }
         .buttonStyle(.plain)
@@ -354,7 +358,7 @@ struct ClientsView: View {
                 .padding(.vertical, 7)
                 .background(
                     Capsule()
-                        .fill(enabled ? Color.blue.opacity(0.25) : Color.white.opacity(0.08))
+                        .fill(enabled ? Color.blue.opacity(0.25) : Color.primary.opacity(0.10))
                 )
         }
         .buttonStyle(.plain)

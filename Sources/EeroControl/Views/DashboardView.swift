@@ -541,7 +541,7 @@ struct DashboardView: View {
                 .fill(tone.backgroundColor.opacity(0.55))
                 .overlay(
                     RoundedRectangle(cornerRadius: 10, style: .continuous)
-                        .stroke(Color.white.opacity(0.08), lineWidth: 1)
+                        .stroke(Color.primary.opacity(0.12), lineWidth: 1)
                 )
         )
     }

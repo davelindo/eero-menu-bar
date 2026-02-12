@@ -112,7 +112,7 @@ struct ProfilesView: View {
             .padding(.vertical, 8)
             .background(
                 RoundedRectangle(cornerRadius: 8, style: .continuous)
-                    .fill(selectedProfile?.id == profile.id ? Color.blue.opacity(0.2) : Color.white.opacity(0.02))
+                    .fill(selectedProfile?.id == profile.id ? Color.blue.opacity(0.2) : Color.primary.opacity(0.03))
             )
         }
         .buttonStyle(.plain)

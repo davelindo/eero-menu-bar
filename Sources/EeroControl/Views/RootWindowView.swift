@@ -24,6 +24,7 @@ private enum AppSection: String, CaseIterable, Identifiable {
 
 struct RootWindowView: View {
     @EnvironmentObject private var appState: AppState
+    @Environment(\.colorScheme) private var colorScheme
     @State private var selectedSection: AppSection = .dashboard
 
     private let pickerWidth: CGFloat = 220
@@ -129,13 +130,13 @@ struct RootWindowView: View {
                 } label: {
                     Text(section.title)
                         .font(.callout.weight(.semibold))
-                        .foregroundStyle(selectedSection == section ? Color.white : Color.white.opacity(0.75))
+                        .foregroundStyle(selectedSection == section ? Color.primary : Color.secondary)
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 8)
                         .background {
                             if selectedSection == section {
                                 RoundedRectangle(cornerRadius: 14, style: .continuous)
-                                    .fill(Color.white.opacity(0.22))
+                                    .fill(Color.primary.opacity(colorScheme == .dark ? 0.18 : 0.08))
                                     .padding(.horizontal, 2)
                                     .padding(.vertical, 2)
                             }
@@ -145,7 +146,7 @@ struct RootWindowView: View {
 
                 if index < AppSection.allCases.count - 1 {
                     Rectangle()
-                        .fill(Color.white.opacity(0.14))
+                        .fill(Color.primary.opacity(0.12))
                         .frame(width: 1, height: 18)
                 }
             }
@@ -154,10 +155,10 @@ struct RootWindowView: View {
         .frame(maxWidth: 620)
         .background(
             Capsule(style: .continuous)
-                .fill(Color.white.opacity(0.04))
+                .fill(.thinMaterial)
                 .overlay(
                     Capsule(style: .continuous)
-                        .stroke(Color.white.opacity(0.08), lineWidth: 1)
+                        .stroke(Color.primary.opacity(0.12), lineWidth: 1)
                 )
         )
         .frame(maxWidth: .infinity)
@@ -219,13 +220,13 @@ struct RootWindowView: View {
             }
         }
         .padding(.horizontal, 8)
-        .padding(.vertical, 3)
+        .padding(.vertical, 2)
         .background(
             RoundedRectangle(cornerRadius: 7, style: .continuous)
-                .fill(Color.white.opacity(0.05))
+                .fill(.thinMaterial)
                 .overlay(
                     RoundedRectangle(cornerRadius: 7, style: .continuous)
-                        .stroke(Color.white.opacity(0.08), lineWidth: 1)
+                        .stroke(Color.primary.opacity(0.12), lineWidth: 1)
                 )
         )
     }
@@ -303,16 +304,31 @@ struct RootWindowView: View {
     }
 
     private var appBackground: some View {
-        LinearGradient(
-            colors: [
-                Color(red: 0.10, green: 0.11, blue: 0.21),
-                Color(red: 0.10, green: 0.12, blue: 0.20),
-                Color(red: 0.08, green: 0.09, blue: 0.16)
-            ],
-            startPoint: .topLeading,
-            endPoint: .bottomTrailing
-        )
-        .ignoresSafeArea()
+        let colors: [Color] = {
+            switch colorScheme {
+            case .dark:
+                return [
+                    Color(red: 0.10, green: 0.11, blue: 0.21),
+                    Color(red: 0.10, green: 0.12, blue: 0.20),
+                    Color(red: 0.08, green: 0.09, blue: 0.16)
+                ]
+            case .light:
+                return [
+                    Color(red: 0.96, green: 0.97, blue: 1.00),
+                    Color(red: 0.93, green: 0.95, blue: 0.99),
+                    Color(red: 0.92, green: 0.94, blue: 0.98)
+                ]
+            @unknown default:
+                return [
+                    Color(red: 0.10, green: 0.11, blue: 0.21),
+                    Color(red: 0.10, green: 0.12, blue: 0.20),
+                    Color(red: 0.08, green: 0.09, blue: 0.16)
+                ]
+            }
+        }()
+
+        return LinearGradient(colors: colors, startPoint: .topLeading, endPoint: .bottomTrailing)
+            .ignoresSafeArea()
     }
 }
 
@@ -341,15 +357,15 @@ enum AppTone: Equatable {
     var backgroundColor: Color {
         switch self {
         case .neutral:
-            return Color.white.opacity(0.07)
+            return Color.primary.opacity(0.06)
         case .accent:
-            return Color.blue.opacity(0.2)
+            return Color.blue.opacity(0.16)
         case .success:
-            return Color.green.opacity(0.2)
+            return Color.green.opacity(0.16)
         case .warning:
-            return Color.orange.opacity(0.2)
+            return Color.orange.opacity(0.16)
         case .danger:
-            return Color.red.opacity(0.2)
+            return Color.red.opacity(0.16)
         }
     }
 }
@@ -386,10 +402,10 @@ struct SectionCard<Content: View>: View {
         .padding(12)
         .background(
             RoundedRectangle(cornerRadius: 12, style: .continuous)
-                .fill(Color.white.opacity(0.05))
+                .fill(.thinMaterial)
                 .overlay(
                     RoundedRectangle(cornerRadius: 12, style: .continuous)
-                        .stroke(Color.white.opacity(0.08), lineWidth: 1)
+                        .stroke(Color.primary.opacity(0.12), lineWidth: 1)
                 )
         )
     }

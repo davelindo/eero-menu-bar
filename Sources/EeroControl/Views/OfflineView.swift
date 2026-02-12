@@ -108,7 +108,7 @@ struct OfflineView: View {
         .padding(.vertical, 8)
         .background(
             RoundedRectangle(cornerRadius: 8, style: .continuous)
-                .fill(Color.white.opacity(0.03))
+                .fill(Color.primary.opacity(0.04))
         )
     }
 
