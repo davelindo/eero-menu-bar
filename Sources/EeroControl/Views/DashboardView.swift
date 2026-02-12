@@ -18,6 +18,131 @@ private struct ThroughputPoint: Identifiable {
     let contextLabel: String
 }
 
+/// PingBar-inspired throughput history graph (low chrome, subtle fill).
+private struct ThroughputTimelineGraphView: View {
+    let samples: [ThroughputPoint]
+    var downloadColor: Color = .green
+    var uploadColor: Color = .blue
+
+    var body: some View {
+        GeometryReader { geometry in
+            let size = geometry.size
+            let ordered = samples.sorted { $0.timestamp < $1.timestamp }
+
+            if let stats = seriesStats(samples: ordered), stats.count > 1 {
+                let span = max(stats.timeSpan, 1)
+                let maxVal = max(stats.maxValue, 1)
+
+                let downloadPoints = chartPoints(
+                    samples: ordered,
+                    size: size,
+                    minTime: stats.minTime,
+                    span: span,
+                    maxValue: maxVal,
+                    series: \.downloadMbps
+                )
+
+                let uploadPoints = chartPoints(
+                    samples: ordered,
+                    size: size,
+                    minTime: stats.minTime,
+                    span: span,
+                    maxValue: maxVal,
+                    series: \.uploadMbps
+                )
+
+                if downloadPoints.count > 1 {
+                    fillPath(points: downloadPoints, height: size.height)
+                        .fill(
+                            LinearGradient(
+                                colors: [downloadColor.opacity(0.18), downloadColor.opacity(0.02)],
+                                startPoint: .top,
+                                endPoint: .bottom
+                            )
+                        )
+
+                    linePath(points: downloadPoints)
+                        .stroke(
+                            downloadColor.opacity(0.70),
+                            style: StrokeStyle(lineWidth: 1.4, lineCap: .round, lineJoin: .round)
+                        )
+                }
+
+                if uploadPoints.count > 1 {
+                    linePath(points: uploadPoints)
+                        .stroke(
+                            uploadColor.opacity(0.55),
+                            style: StrokeStyle(lineWidth: 1.2, lineCap: .round, lineJoin: .round)
+                        )
+                }
+            } else {
+                Color.clear
+            }
+        }
+    }
+
+    private func seriesStats(samples: [ThroughputPoint]) -> (minTime: Date, timeSpan: TimeInterval, maxValue: Double, count: Int)? {
+        guard samples.count > 1, let first = samples.first?.timestamp, let last = samples.last?.timestamp else {
+            return nil
+        }
+
+        var maxVal = 0.0
+        var nonZeroCount = 0
+        for sample in samples {
+            maxVal = max(maxVal, max(0, sample.downloadMbps), max(0, sample.uploadMbps))
+            if sample.downloadMbps > 0 || sample.uploadMbps > 0 {
+                nonZeroCount += 1
+            }
+        }
+
+        return (minTime: first, timeSpan: last.timeIntervalSince(first), maxValue: maxVal, count: max(nonZeroCount, samples.count))
+    }
+
+    private func chartPoints(
+        samples: [ThroughputPoint],
+        size: CGSize,
+        minTime: Date,
+        span: TimeInterval,
+        maxValue: Double,
+        series: KeyPath<ThroughputPoint, Double>
+    ) -> [CGPoint] {
+        guard samples.count > 1 else { return [] }
+
+        return samples.map { sample in
+            let timeOffset = sample.timestamp.timeIntervalSince(minTime)
+            let x = CGFloat(min(max(timeOffset / span, 0), 1)) * size.width
+
+            let value = max(0, sample[keyPath: series])
+            let normalizedY = min(max(value / maxValue, 0), 1)
+            let y = size.height - (CGFloat(normalizedY) * size.height * 0.8 + size.height * 0.1)
+            return CGPoint(x: x, y: y)
+        }
+    }
+
+    private func linePath(points: [CGPoint]) -> Path {
+        Path { path in
+            guard let first = points.first else { return }
+            path.move(to: first)
+            for point in points.dropFirst() {
+                path.addLine(to: point)
+            }
+        }
+    }
+
+    private func fillPath(points: [CGPoint], height: CGFloat) -> Path {
+        Path { path in
+            guard let first = points.first, let last = points.last else { return }
+            path.move(to: first)
+            for point in points.dropFirst() {
+                path.addLine(to: point)
+            }
+            path.addLine(to: CGPoint(x: last.x, y: height))
+            path.addLine(to: CGPoint(x: first.x, y: height))
+            path.closeSubpath()
+        }
+    }
+}
+
 struct DashboardView: View {
     @EnvironmentObject private var appState: AppState
 
@@ -35,27 +160,6 @@ struct DashboardView: View {
 
     private var latestThroughput: ThroughputPoint? {
         throughputHistory.last
-    }
-
-    private var chartYMax: Double {
-        let maximum = throughputHistory
-            .flatMap { [$0.downloadMbps, $0.uploadMbps] }
-            .max() ?? 0
-        return max(10, maximum * 1.25)
-    }
-
-    private var chartDomain: ClosedRange<Date> {
-        let now = Date()
-        guard let first = throughputHistory.first?.timestamp,
-              let last = throughputHistory.last?.timestamp else {
-            return now.addingTimeInterval(-60) ... now
-        }
-
-        if abs(last.timeIntervalSince(first)) < 1 {
-            return first.addingTimeInterval(-60) ... last.addingTimeInterval(1)
-        }
-
-        return first ... last
     }
 
     private var pendingQueueCount: Int {
@@ -157,36 +261,20 @@ struct DashboardView: View {
     private func throughputTimelineCard(network: EeroNetwork) -> some View {
         SectionCard(title: "Traffic Timeline") {
             if throughputHistory.count > 1 {
-                Chart {
-                    ForEach(throughputHistory) { point in
-                        LineMark(
-                            x: .value("Time", point.timestamp),
-                            y: .value("Download", point.downloadMbps)
-                        )
-                        .foregroundStyle(.green)
-                        .interpolationMethod(.catmullRom)
+                ThroughputTimelineGraphView(samples: throughputHistory, downloadColor: .green, uploadColor: .blue)
+                    .frame(height: 180)
 
-                        LineMark(
-                            x: .value("Time", point.timestamp),
-                            y: .value("Upload", point.uploadMbps)
-                        )
-                        .foregroundStyle(.blue)
-                        .interpolationMethod(.catmullRom)
+                if let first = throughputHistory.first?.timestamp,
+                   let last = throughputHistory.last?.timestamp {
+                    let showDay = !Calendar.current.isDate(first, inSameDayAs: last)
+                    HStack {
+                        Text(first, format: showDay ? .dateTime.weekday(.abbreviated).hour().minute() : .dateTime.hour().minute())
+                        Spacer()
+                        Text(last, format: showDay ? .dateTime.weekday(.abbreviated).hour().minute() : .dateTime.hour().minute())
                     }
+                    .font(.caption2)
+                    .foregroundStyle(.secondary)
                 }
-                .chartXScale(domain: chartDomain)
-                .chartYScale(domain: 0 ... chartYMax)
-                .chartXAxis {
-                    AxisMarks(values: .automatic(desiredCount: 4)) { _ in
-                        AxisGridLine()
-                        AxisTick()
-                        AxisValueLabel(format: .dateTime.minute().second())
-                    }
-                }
-                .chartYAxis {
-                    AxisMarks(position: .leading)
-                }
-                .frame(height: 180)
             } else {
                 Label("No eero realtime telemetry in this refresh.", systemImage: "waveform.path.ecg")
                     .font(.callout)
@@ -238,33 +326,38 @@ struct DashboardView: View {
 
                 Chart {
                     ForEach(activeTimeline.samples) { sample in
-                        LineMark(
-                            x: .value("Time", sample.timestamp),
-                            y: .value("Download", Double(max(0, sample.downloadBytes)))
-                        )
-                        .foregroundStyle(.green)
-                        .interpolationMethod(.catmullRom)
+                        let download = Double(max(0, sample.downloadBytes))
+                        let upload = Double(max(0, sample.uploadBytes))
 
-                        LineMark(
+                        BarMark(
                             x: .value("Time", sample.timestamp),
-                            y: .value("Upload", Double(max(0, sample.uploadBytes)))
+                            yStart: .value("Start", 0),
+                            yEnd: .value("Download", download)
                         )
-                        .foregroundStyle(.blue)
-                        .interpolationMethod(.catmullRom)
+                        .cornerRadius(2)
+                        .foregroundStyle(Color.green.opacity(0.55))
+
+                        BarMark(
+                            x: .value("Time", sample.timestamp),
+                            yStart: .value("Start", download),
+                            yEnd: .value("Total", download + upload)
+                        )
+                        .cornerRadius(2)
+                        .foregroundStyle(Color.blue.opacity(0.45))
                     }
                 }
-                .chartYScale(domain: 0 ... timelineYMax(for: activeTimeline.samples))
+                .chartYScale(domain: 0 ... timelineStackedYMax(for: activeTimeline.samples))
                 .chartXScale(domain: timelineDomain(for: activeTimeline.samples))
                 .chartXAxis {
                     AxisMarks(values: .automatic(desiredCount: 4)) { _ in
-                        AxisGridLine()
                         AxisTick()
-                        AxisValueLabel(format: .dateTime.hour().minute())
+                        AxisValueLabel(format: .dateTime.hour())
                     }
                 }
                 .chartYAxis {
                     AxisMarks(position: .leading) { value in
                         AxisGridLine()
+                            .foregroundStyle(.secondary.opacity(0.18))
                         AxisTick()
                         AxisValueLabel {
                             if let byteValue = value.as(Double.self) {
@@ -699,6 +792,13 @@ struct DashboardView: View {
     private func timelineYMax(for samples: [DeviceUsageTimelineSample]) -> Double {
         let maximum = samples
             .flatMap { [Double($0.downloadBytes), Double($0.uploadBytes)] }
+            .max() ?? 0
+        return max(1, maximum * 1.25)
+    }
+
+    private func timelineStackedYMax(for samples: [DeviceUsageTimelineSample]) -> Double {
+        let maximum = samples
+            .map { Double(max(0, $0.downloadBytes) + max(0, $0.uploadBytes)) }
             .max() ?? 0
         return max(1, maximum * 1.25)
     }
