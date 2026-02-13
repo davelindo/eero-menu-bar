@@ -2,15 +2,31 @@ import AppKit
 import SwiftUI
 
 extension View {
+  @ViewBuilder
   func liquidGlass<ShapeType: Shape>(
     in shape: ShapeType,
     tint: Color = .clear,
     interactive: Bool = false
   ) -> some View {
-    if interactive {
-      self.glassEffect(.regular.tint(tint).interactive(), in: shape)
+    if #available(macOS 26, *) {
+      if interactive {
+        self.glassEffect(.regular.tint(tint).interactive(), in: shape)
+      } else {
+        self.glassEffect(.regular.tint(tint), in: shape)
+      }
     } else {
-      self.glassEffect(.regular.tint(tint), in: shape)
+      self
+    }
+  }
+
+  @ViewBuilder
+  func glassEffectContainer() -> some View {
+    if #available(macOS 26, *) {
+      GlassEffectContainer {
+        self
+      }
+    } else {
+      self
     }
   }
 }
@@ -119,9 +135,8 @@ struct RootWindowView: View {
   }
 
   var body: some View {
-    GlassEffectContainer {
-      mainContent
-    }
+    mainContent
+      .glassEffectContainer()
     .padding(14)
     .background(WindowGlassHost())
     .background(appBackground)

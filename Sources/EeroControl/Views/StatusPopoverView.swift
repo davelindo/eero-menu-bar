@@ -10,8 +10,7 @@ struct StatusPopoverView: View {
   }
 
   var body: some View {
-    GlassEffectContainer {
-      VStack(alignment: .leading, spacing: 12) {
+    let content = VStack(alignment: .leading, spacing: 12) {
         Text("Eero Control")
           .font(.headline)
 
@@ -67,10 +66,17 @@ struct StatusPopoverView: View {
             .font(.caption)
             .foregroundStyle(.orange)
         }
+    }
+    .padding(14)
+    .frame(width: 320)
+    .background(Color.clear)
+
+    if #available(macOS 26, *) {
+      GlassEffectContainer {
+        content
       }
-      .padding(14)
-      .frame(width: 320)
-      .background(Color.clear)
+    } else {
+      content
     }
   }
 
