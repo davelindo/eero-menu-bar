@@ -8,6 +8,7 @@ extension View {
     tint: Color = .clear,
     interactive: Bool = false
   ) -> some View {
+#if swift(>=6.0)
     if #available(macOS 26, *) {
       if interactive {
         self.glassEffect(.regular.tint(tint).interactive(), in: shape)
@@ -17,10 +18,14 @@ extension View {
     } else {
       self
     }
+#else
+    self
+#endif
   }
 
   @ViewBuilder
   func glassEffectContainer() -> some View {
+#if swift(>=6.0)
     if #available(macOS 26, *) {
       GlassEffectContainer {
         self
@@ -28,6 +33,9 @@ extension View {
     } else {
       self
     }
+#else
+    self
+#endif
   }
 }
 

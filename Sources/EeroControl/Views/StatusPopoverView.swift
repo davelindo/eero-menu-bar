@@ -10,74 +10,67 @@ struct StatusPopoverView: View {
   }
 
   var body: some View {
-    let content = VStack(alignment: .leading, spacing: 12) {
-        Text("Eero Control")
-          .font(.headline)
+    VStack(alignment: .leading, spacing: 12) {
+      Text("Eero Control")
+        .font(.headline)
 
-        Text(appState.cloudAndLanStatus)
+      Text(appState.cloudAndLanStatus)
+        .font(.caption)
+        .foregroundStyle(.secondary)
+
+      Text(localThroughputStatusText)
+        .font(.caption)
+        .foregroundStyle(.secondary)
+
+      if let network = selectedNetwork {
+        Text(network.displayName)
+          .bold()
+        Text("Connected: \(network.connectedClientsCount)")
           .font(.caption)
-          .foregroundStyle(.secondary)
 
-        Text(localThroughputStatusText)
+        Button(network.guestNetworkEnabled ? "Disable Guest" : "Enable Guest") {
+          appState.setGuestNetwork(network: network, enabled: !network.guestNetworkEnabled)
+        }
+        .buttonStyle(.plain)
+        .padding(.horizontal, 12)
+        .padding(.vertical, 8)
+        .liquidGlass(in: Capsule(), tint: .blue.opacity(0.2), interactive: true)
+      } else {
+        Text("No network loaded")
+          .foregroundStyle(.secondary)
+      }
+
+      Divider()
+
+      HStack {
+        Button("Refresh") {
+          appState.refreshNow()
+        }
+        .buttonStyle(.plain)
+        .padding(.horizontal, 12)
+        .padding(.vertical, 8)
+        .liquidGlass(
+          in: Capsule(), tint: AppTone.neutral.backgroundColor.opacity(0.2), interactive: true)
+
+        Button("Open App") {
+          openAppWindow()
+        }
+        .buttonStyle(.plain)
+        .padding(.horizontal, 12)
+        .padding(.vertical, 8)
+        .liquidGlass(in: Capsule(), tint: .blue.opacity(0.2), interactive: true)
+      }
+
+      if let error = appState.lastErrorMessage {
+        Text(error)
           .font(.caption)
-          .foregroundStyle(.secondary)
-
-        if let network = selectedNetwork {
-          Text(network.displayName)
-            .bold()
-          Text("Connected: \(network.connectedClientsCount)")
-            .font(.caption)
-
-          Button(network.guestNetworkEnabled ? "Disable Guest" : "Enable Guest") {
-            appState.setGuestNetwork(network: network, enabled: !network.guestNetworkEnabled)
-          }
-          .buttonStyle(.plain)
-          .padding(.horizontal, 12)
-          .padding(.vertical, 8)
-          .liquidGlass(in: Capsule(), tint: .blue.opacity(0.2), interactive: true)
-        } else {
-          Text("No network loaded")
-            .foregroundStyle(.secondary)
-        }
-
-        Divider()
-
-        HStack {
-          Button("Refresh") {
-            appState.refreshNow()
-          }
-          .buttonStyle(.plain)
-          .padding(.horizontal, 12)
-          .padding(.vertical, 8)
-          .liquidGlass(
-            in: Capsule(), tint: AppTone.neutral.backgroundColor.opacity(0.2), interactive: true)
-
-          Button("Open App") {
-            openAppWindow()
-          }
-          .buttonStyle(.plain)
-          .padding(.horizontal, 12)
-          .padding(.vertical, 8)
-          .liquidGlass(in: Capsule(), tint: .blue.opacity(0.2), interactive: true)
-        }
-
-        if let error = appState.lastErrorMessage {
-          Text(error)
-            .font(.caption)
-            .foregroundStyle(.orange)
-        }
+          .foregroundStyle(.orange)
+      }
     }
     .padding(14)
     .frame(width: 320)
     .background(Color.clear)
-
-    if #available(macOS 26, *) {
-      GlassEffectContainer {
-        content
-      }
-    } else {
-      content
-    }
+    .glassEffectContainer()
   }
 
   private func openAppWindow() {
