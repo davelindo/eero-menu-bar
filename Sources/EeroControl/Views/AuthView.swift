@@ -1,72 +1,88 @@
 import SwiftUI
 
 struct AuthView: View {
-    @EnvironmentObject private var appState: AppState
+  @EnvironmentObject private var appState: AppState
 
-    private var authError: String? {
-        appState.lastErrorMessage
+  private var authError: String? {
+    appState.lastErrorMessage
+  }
+
+  var body: some View {
+    VStack(alignment: .leading, spacing: 16) {
+      Text("Connect to eero")
+        .font(.title2)
+        .bold()
+
+      switch appState.authState {
+      case .restoring, .authenticated:
+        EmptyView()
+
+      case .unauthenticated:
+        loginSection
+
+      case .waitingForVerification(let login):
+        verificationSection(login: login)
+      }
+
+      if let error = authError {
+        Text(error)
+          .foregroundStyle(.red)
+          .font(.callout)
+      }
+
+      Spacer()
     }
+    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+    .padding(24)
+  }
 
-    var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            Text("Connect to eero")
-                .font(.title2)
-                .bold()
+  private var loginSection: some View {
+    VStack(alignment: .leading, spacing: 8) {
+      Text("Phone or Email")
+      TextField("you@example.com or +15551234567", text: $appState.loginInput)
+        .textFieldStyle(.plain)
+        .padding(.horizontal, 10)
+        .padding(.vertical, 8)
+        .liquidGlass(in: RoundedRectangle(cornerRadius: 10, style: .continuous))
 
-            switch appState.authState {
-            case .restoring, .authenticated:
-                EmptyView()
+      Button("Request Verification Code") {
+        appState.requestLogin()
+      }
+      .buttonStyle(.plain)
+      .padding(.horizontal, 12)
+      .padding(.vertical, 8)
+      .liquidGlass(in: Capsule(), tint: .blue.opacity(0.25), interactive: true)
+    }
+  }
 
-            case .unauthenticated:
-                loginSection
+  private func verificationSection(login: String) -> some View {
+    VStack(alignment: .leading, spacing: 8) {
+      Text("Verification code sent to \(login)")
+        .foregroundStyle(.secondary)
 
-            case .waitingForVerification(let login):
-                verificationSection(login: login)
-            }
+      TextField("Enter code", text: $appState.verificationCode)
+        .textFieldStyle(.plain)
+        .padding(.horizontal, 10)
+        .padding(.vertical, 8)
+        .liquidGlass(in: RoundedRectangle(cornerRadius: 10, style: .continuous))
 
-            if let error = authError {
-                Text(error)
-                    .foregroundStyle(.red)
-                    .font(.callout)
-            }
-
-            Spacer()
+      HStack {
+        Button("Verify") {
+          appState.verifyLoginCode()
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-        .padding(24)
-    }
+        .buttonStyle(.plain)
+        .padding(.horizontal, 12)
+        .padding(.vertical, 8)
+        .liquidGlass(in: Capsule(), tint: .green.opacity(0.25), interactive: true)
 
-    private var loginSection: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text("Phone or Email")
-            TextField("you@example.com or +15551234567", text: $appState.loginInput)
-                .textFieldStyle(.roundedBorder)
-
-            Button("Request Verification Code") {
-                appState.requestLogin()
-            }
-            .buttonStyle(.borderedProminent)
+        Button("Start Over") {
+          appState.restartAuthentication()
         }
+        .buttonStyle(.plain)
+        .padding(.horizontal, 12)
+        .padding(.vertical, 8)
+        .liquidGlass(in: Capsule(), tint: .orange.opacity(0.2), interactive: true)
+      }
     }
-
-    private func verificationSection(login: String) -> some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text("Verification code sent to \(login)")
-                .foregroundStyle(.secondary)
-
-            TextField("Enter code", text: $appState.verificationCode)
-                .textFieldStyle(.roundedBorder)
-
-            HStack {
-                Button("Verify") {
-                    appState.verifyLoginCode()
-                }
-                .buttonStyle(.borderedProminent)
-
-                Button("Start Over") {
-                    appState.restartAuthentication()
-                }
-            }
-        }
-    }
+  }
 }

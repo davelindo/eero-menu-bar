@@ -31,6 +31,7 @@
 		B210F1A948C66402CAF406A0 /* EeroControlApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1B67791B8462FACF4B6F51 /* EeroControlApp.swift */; };
 		B3F134F9529E14D1C28FB85E /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F980C94692ECAC4DE841245 /* AuthView.swift */; };
 		C5A595908A5E0D44528BDBC2 /* EeroAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A0D08F115A73E9F5FBB6C6 /* EeroAPIClient.swift */; };
+		CAC0E11621BBB3BB44792CC6 /* DisplayModelConsistencyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B2738575768CC718C3F8C6 /* DisplayModelConsistencyTests.swift */; };
 		CCC4E52D43F004B0FA7139C0 /* ProfilesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9196BDA76141A6C16219BA33 /* ProfilesView.swift */; };
 		DB030A497B70AE5936A3F713 /* OfflineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02504468A755FDA4A0689BC /* OfflineView.swift */; };
 		DD95EF435E5C917EB975728A /* ShellCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D477B26B77AD48B0F591018 /* ShellCommand.swift */; };
@@ -71,6 +72,7 @@
 		6D1B67791B8462FACF4B6F51 /* EeroControlApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EeroControlApp.swift; sourceTree = "<group>"; };
 		8AA5C97C823478E5BFD7A1D1 /* EeroControl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EeroControl.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9196BDA76141A6C16219BA33 /* ProfilesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilesView.swift; sourceTree = "<group>"; };
+		99B2738575768CC718C3F8C6 /* DisplayModelConsistencyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayModelConsistencyTests.swift; sourceTree = "<group>"; };
 		9D477B26B77AD48B0F591018 /* ShellCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShellCommand.swift; sourceTree = "<group>"; };
 		A133057CBFE4E0C69700C301 /* OfflineConnectivityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineConnectivityService.swift; sourceTree = "<group>"; };
 		B054E3A3E467662714396A95 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 		D7C22F1EA346483348AF8926 /* EeroControlTests */ = {
 			isa = PBXGroup;
 			children = (
+				99B2738575768CC718C3F8C6 /* DisplayModelConsistencyTests.swift */,
 				4793CBF323946CF7D75D4154 /* PendingActionQueueTests.swift */,
 				19239FC0ECD3FF9C522DAB4D /* SettingsStoreTests.swift */,
 			);
@@ -318,6 +321,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CAC0E11621BBB3BB44792CC6 /* DisplayModelConsistencyTests.swift in Sources */,
 				8B754744B754F09401EC5AC1 /* PendingActionQueueTests.swift in Sources */,
 				3E95E614AE8FE4467081A975 /* SettingsStoreTests.swift in Sources */,
 			);
@@ -380,7 +384,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				GENERATE_INFOPLIST_FILE = NO;
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -443,7 +447,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				GENERATE_INFOPLIST_FILE = NO;
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -497,6 +501,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Resources/Info.plist;
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -514,6 +519,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Resources/Info.plist;
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
